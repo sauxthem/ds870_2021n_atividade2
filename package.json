@@ -1,7 +1,7 @@
 {
   "name": "ds870_atividade_2",
   "version": "1.0.0",
-  "description": "* Guilherme Alves da Silva - GRR20186254\r * Matheus Augusto de Moraes Ribeiro - GRR20176298\r * Michelly Narita Kuriyama - GRR",
+  "description": "* Guilherme Alves da Silva - GRR20186254\r * Matheus Augusto de Moraes Ribeiro - GRR20176298\r * Michelly Narita Kuriyama - GRR20175515",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r dotenv/config ./index.js",

@@ -5,7 +5,7 @@
 ### Equipe:
 * Guilherme Alves da Silva - GRR20186254
 * Matheus Augusto de Moraes Ribeiro - GRR20176298
-* Michelly Narita Kuriyama - GRR
+* Michelly Narita Kuriyama - GRR20175515
 
 ## Descrição da atividade:
 
