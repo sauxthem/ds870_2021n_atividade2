@@ -2,26 +2,26 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("agendamentos", {
+    await queryInterface.createTable("schedules", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      medicoId: {
+      doctorId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'medicos',
+          model: 'doctors',
           key: 'id',
         }
       },
-      pacienteId: {
+      patientId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'pacientes',
+          model: 'patients',
           key: 'id',
         }
       },
@@ -38,6 +38,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("agendamentos");
+    await queryInterface.dropTable("schedules");
   }
 };
