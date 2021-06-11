@@ -5,7 +5,7 @@ const Appointment = require("../models/Appointment");
 const Doctor = require("../models/Doctor");
 const Patient = require("../models/Patient");
 
-const conn = new Sequelize(dbConfig)
+const conn = new sequelize(dbConfig)
 
 Appointment.init(conn);
 Doctor.init(conn);
@@ -15,4 +15,4 @@ Appointment.associate(conn.models);
 Doctor.associate(conn.models);
 Patient.associate(conn.models);
 
-modeule.exports = conn;
+module.exports = conn;

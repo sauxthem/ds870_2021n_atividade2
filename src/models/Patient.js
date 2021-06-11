@@ -1,4 +1,4 @@
-const sequelize = require("sequelize");
+const Sequelize = require("sequelize");
 
 class Patient extends Sequelize.Model {
     static init(sequelize) {
