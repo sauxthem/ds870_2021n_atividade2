@@ -23,7 +23,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         length: 255,
-      }
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      }, 
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+        onUpdate : Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     });
   },
 
