@@ -33,3 +33,12 @@
     * appointmentController(não precisa edição): 
         * newAppointment, searchAppointmentByPatientId, searchAppointmentByPhysicianId, deleteAppointment
 * Não esqueça de incluir os possíveis erros e enviar o status na resposta do request.
+
+#### Entrega 4
+
+* Desenvolva a funcionalidade de autenticação para a entidade Physiciande nosso sistema.
+* Use o bcrypt para calcular o hash da senha tanto na criação de um novo médico, quanto na verificação da senha no momento de autenticação.
+* Faça validação de política de senha para contar no mínimo 8 caracteres, uma letra e um número, no momento de criar um novo médico.
+* Gere um tokenJWT para os usuários Physicians no momento de autenticação de usuário e inclua o tokenna response. 
+* Não esqueça de incluir o id do Physician no token.
+* Faça um middleware de validação do token e inclua em todas as rotas cabíveis do Physician e Appointments.
