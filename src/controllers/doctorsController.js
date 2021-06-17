@@ -2,7 +2,37 @@ const Doctor = require("../models/Doctor")
 const Patient = require("../models/Patient")
 const Appointment = require("../models/Appointment")
 
+async function authenticateDoctor(req, res){
+    let {
+        email,
+        password
+    } = req.body;
+
+    if (!email || !password)
+        return res.status(400).json({ msg: "You must inform the email and password!"});
+    
+    try {
+        let doctor = await Doctor.findOne({
+            where: { email },
+        });
+
+        if (!doctor){
+            return res.status(404).json({msg: "Doctor not found!"});
+        }
+        else {
+            if (password === doctor.password) 
+                return res.status(200).json({msg: "User successfully authenticated."});
+            else 
+                return res.status(401).json({ msg: "Invalid user and/or password. "});
+        }
+    }
+    catch (error){ 
+        res.status(500).json({ msg: error.message});
+    }
+}
+
 module.exports = {
+    authenticateDoctor,
     async newDoctor(req, res) {
         let {
             name,
