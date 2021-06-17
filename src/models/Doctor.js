@@ -16,7 +16,6 @@ class Doctor extends Sequelize.Model {
 
     static associate(models){
         this.hasMany(models.Appointment, { foreignKey: "doctorId"});
-        this.hasMany(models.Patient, { foreignKey: "doctorId"});
     }
 }
 
