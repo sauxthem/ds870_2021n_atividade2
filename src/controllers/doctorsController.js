@@ -2,6 +2,20 @@ const Doctor = require("../models/Doctor")
 const Patient = require("../models/Patient")
 const Appointment = require("../models/Appointment")
 
+const bcrypt = require("bcryptjs");
+
+function passwordValidation(password){
+    if (password.length < 8)
+        return "Password must have at least 8 characters!";
+    else if (!password.match(/[A-Z]/g))
+        return "Password must contain at least one upper case letter!";
+    else if (!password.match(/[a-z]/g))
+        return "Password must contain at least one lower case letter!";
+    else if (!password.match(/[0-9]/g))
+        return "Password must contain at least one number!";
+    else return "OK";
+}
+
 async function authenticateDoctor(req, res){
     let {
         email,
@@ -20,7 +34,7 @@ async function authenticateDoctor(req, res){
             return res.status(404).json({msg: "Doctor not found!"});
         }
         else {
-            if (password === doctor.password) 
+            if (bcrypt.compareSync(password, doctor.password)) 
                 return res.status(200).json({msg: "User successfully authenticated."});
             else 
                 return res.status(401).json({ msg: "Invalid user and/or password. "});
@@ -46,15 +60,24 @@ module.exports = {
                 .json({msg: "You must inform a valid name, email and password!"});
             return;
         }
+
+        let pwdValid = passwordValidation(password);
+
+        if (pwdValid !== "OK")
+            return res.status(400).json({ msg: pwdValid })
+
         try {
+            let salt = bcrypt.genSaltSync(12);
+            let hash = bcrypt.hashSync(password, salt);
+
             let newDoctor = await Doctor.create({
                 name,
                 email,
-                password
+                password: hash,
             });
             console.log("\nCreation successful - " + newDoctor.name + "\n");
 
-            if (newPatient) {
+            if (newDoctor) {
                 res.status(201).json({msg: "New Doctor created successfully."});
             } else {
                 res.status(500).json({msg: "It was not possible to create the new doctor."});
