@@ -9,19 +9,19 @@ module.exports = {
                     id: 1,
                     name: "Felipe Zgoda Borges",
                     email: "felipe.zgoda@hotmail.com",
-                    password: "123"
+                    password: "$2a$12$dCcFwvOAIgRln9WgvkZxXeeHO5gbGXtBIvs7.QSPZVOVymVALU5Zi"
                 },
                 {
                     id: 2,
                     name: "Michelly Narita Kuriyanma",
                     email: "michellykuriyama@hotmail.com",
-                    password: "123"
+                    password: "$2a$12$dCcFwvOAIgRln9WgvkZxXeeHO5gbGXtBIvs7.QSPZVOVymVALU5Zi"
                 },
                 {
                     id: 3,
                     name: "Maria Fernanda de Souza",
                     email: "mahzinhasouza@gmail.com",
-                    password: "123"
+                    password: "$2a$12$dCcFwvOAIgRln9WgvkZxXeeHO5gbGXtBIvs7.QSPZVOVymVALU5Zi"
                 },
             ],
         {}
