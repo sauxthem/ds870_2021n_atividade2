@@ -3,6 +3,7 @@ const Patient = require("../models/Patient")
 const Appointment = require("../models/Appointment")
 
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 function passwordValidation(password){
     if (password.length < 8)
@@ -14,6 +15,14 @@ function passwordValidation(password){
     else if (!password.match(/[0-9]/g))
         return "Password must contain at least one number!";
     else return "OK";
+}
+
+function generateToken(id) {
+	process.env.JWT_SECRET = Math.random().toString(36).slice(-20);
+	const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+		expiresIn: 82800,
+	});
+	return token;
 }
 
 async function authenticateDoctor(req, res){
@@ -34,9 +43,10 @@ async function authenticateDoctor(req, res){
             return res.status(404).json({msg: "Doctor not found!"});
         }
         else {
-            if (bcrypt.compareSync(password, doctor.password)) 
-                return res.status(200).json({msg: "User successfully authenticated."});
-            else 
+            if (bcrypt.compareSync(password, doctor.password)) {
+                const token = generateToken(doctor.id);
+                return res.status(200).json({msg: "User successfully authenticated.", token});
+             } else 
                 return res.status(401).json({ msg: "Invalid user and/or password. "});
         }
     }
